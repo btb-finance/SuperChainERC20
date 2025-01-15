@@ -1,0 +1,4 @@
+@contracts-bedrock/=node_modules/@eth-optimism/contracts-bedrock/src/
+solady/=node_modules/solady/src/
+@openzeppelin/=node_modules/@openzeppelin/
+@eth-optimism/=node_modules/@eth-optimism/
