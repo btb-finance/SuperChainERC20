@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.25;
 
-import "@eth-optimism/contracts-bedrock/src/libraries/Predeploys.sol";
+import "@eth-optimism/contracts-bedrock/contracts/libraries/Predeploys.sol";
 import "./interfaces/L2/SuperchainERC20.sol";
 import "solady/src/auth/Ownable.sol";
 

@@ -5,7 +5,7 @@ pragma solidity 0.8.25;
 import { ERC20 } from "solady/src/tokens/ERC20.sol";
 
 // Libraries
-import { Predeploys } from "@eth-optimism/contracts-bedrock/src/libraries/Predeploys.sol";
+import { Predeploys } from "@eth-optimism/contracts-bedrock/contracts/libraries/Predeploys.sol";
 import { Unauthorized } from "../../libraries/errors/CommonErrors.sol";
 
 // Interfaces
