@@ -29,31 +29,7 @@ const config: HardhatUserConfig = {
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true
-    },
-    "op-sepolia": {
-      url: "https://sepolia.optimism.io",
-      accounts: [process.env.PRIVATE_KEY || ""]
-    },
-    "eth-sepolia": {
-      url: "https://gateway.tenderly.co/public/sepolia",
-      accounts: [process.env.PRIVATE_KEY || ""]
     }
-  },
-  etherscan: {
-    apiKey: {
-      "op-sepolia": "AQ8REW4J2N79Y69ZW9CZED9N7WI3YTRCX4",
-      "sepolia": "4EDQPVIY7ZZ45HMZWTJXAJIZC8S63QQUTA"
-    },
-    customChains: [
-      {
-        network: "op-sepolia",
-        chainId: 11155420,
-        urls: {
-          apiURL: "https://api-sepolia-optimistic.etherscan.io/api",
-          browserURL: "https://sepolia-optimism.etherscan.io"
-        }
-      }
-    ]
   }
 };
 
