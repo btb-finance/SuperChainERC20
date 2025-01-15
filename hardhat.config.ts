@@ -15,20 +15,13 @@ const config: HardhatUserConfig = {
       viaIR: true
     }
   },
-  paths: {
-    sources: "./contracts",
-    tests: "./test",
-    cache: "./cache",
-    artifacts: "./artifacts",
-    root: "."
-  },
-  typechain: {
-    outDir: "typechain-types",
-    target: "ethers-v6",
-  },
   networks: {
     hardhat: {
       allowUnlimitedContractSize: true
+    },
+    "op-sepolia": {
+      url: "https://sepolia.optimism.io",
+      accounts: ["0x89266ff69e24130a10d24dfb80316a2c6f3e2304345e8796aa820a3a19f27589"]
     }
   }
 };
