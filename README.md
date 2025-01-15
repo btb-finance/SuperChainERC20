@@ -1,6 +1,40 @@
-# Superchain ERC20 Token
+# BTBFinance ERC20 Token
 
-A cross-chain compatible ERC20 token implementation designed for the Optimism ecosystem. This token can be bridged across different chains in the Optimism Superchain using the L2 Standard Bridge.
+A SuperchainERC20 token implementation for the OP Sepolia network.
+
+## Contract Structure & Imports
+
+### Main Contract
+`contracts/BTBFinance.sol`:
+```solidity
+import {Predeploys} from "../src/libraries/Predeploys.sol";
+import {SuperchainERC20} from "./interfaces/L2/SuperchainERC20.sol";
+import {IERC20} from "./interfaces/L2/IERC20.sol";
+import {IERC7802} from "./interfaces/L2/IERC7802.sol";
+import {IERC165} from "../src/utils/introspection/IERC165.sol";
+import {Unauthorized} from "../src/libraries/errors/Unauthorized.sol";
+import {Ownable} from "../src/auth/Ownable.sol";
+```
+
+### Interface Hierarchy
+1. `contracts/interfaces/L2/SuperchainERC20.sol`:
+   ```solidity
+   import { ERC20 } from "../../../src/tokens/ERC20.sol";
+   import { Predeploys } from "../../../src/libraries/Predeploys.sol";
+   import { Unauthorized } from "../../../src/libraries/errors/CommonErrors.sol";
+   import { IERC20 } from "./IERC20.sol";
+   import { IERC7802 } from "./IERC7802.sol";
+   import { ISemver } from "../universal/ISemver.sol";
+   ```
+
+2. `src/utils/introspection/IERC165.sol`:
+   - Pure interface definition, no imports
+   - Defines the ERC165 standard interface detection
+
+3. `src/utils/introspection/ERC165.sol`:
+   ```solidity
+   import {IERC165} from "./IERC165.sol";
+   ```
 
 ## Features
 
@@ -55,11 +89,14 @@ A cross-chain compatible ERC20 token implementation designed for the Optimism ec
 
 ```json
 {
-  "@eth-optimism/contracts-bedrock": "latest",
-  "@openzeppelin/contracts": "^5.0.1",
-  "@rari-capital/solmate": "^6.4.0",
-  "solady": "^0.0.294",
-  "ethers": "^6.9.0"
+  "dependencies": {
+    "@eth-optimism/contracts-bedrock": "latest",
+    "@openzeppelin/contracts": "^5.0.1",
+    "@rari-capital/solmate": "^6.4.0",
+    "dotenv": "^16.4.7",
+    "ethers": "^6.9.0",
+    "solady": "^0.0.294"
+  }
 }
 ```
 
@@ -90,6 +127,70 @@ The token implements cross-chain capabilities through:
    ```
    - Restricted to L2 Standard Bridge
    - Used when sending tokens to other chains
+
+## Deployment Instructions
+
+1. **Setup Environment**
+   ```bash
+   npm install
+   ```
+
+2. **Configure Network**
+   Update `hardhat.config.ts`:
+   ```typescript
+   networks: {
+     "op-sepolia": {
+       url: "https://sepolia.optimism.io",
+       accounts: ["YOUR_PRIVATE_KEY"]
+     }
+   }
+   ```
+
+3. **Deploy Contract**
+   ```bash
+   npx hardhat run scripts/deploy.ts --network op-sepolia
+   ```
+
+4. **Verify Contract**
+   First, add Etherscan configuration to `hardhat.config.ts`:
+   ```typescript
+   etherscan: {
+     apiKey: {
+       "op-sepolia": "YOUR_ETHERSCAN_API_KEY"
+     },
+     customChains: [
+       {
+         network: "op-sepolia",
+         chainId: 11155420,
+         urls: {
+           apiURL: "https://api-sepolia-optimistic.etherscan.io/api",
+           browserURL: "https://sepolia-optimism.etherscan.io"
+         }
+       }
+     ]
+   }
+   ```
+
+   Then verify:
+   ```bash
+   npx hardhat verify --network op-sepolia CONTRACT_ADDRESS OWNER_ADDRESS "BTB Finance" "BTB" 18
+   ```
+
+## Latest Deployment
+
+- **Network**: OP Sepolia
+- **Contract Address**: `0xCDed8F3C720382E94db6F4cF63E7F376123B5ED5`
+- **Owner Address**: `0xbe2680DC1752109b4344DbEB1072fd8Cd880e54b`
+- **Verification**: [View on Etherscan](https://sepolia-optimism.etherscan.io/address/0xCDed8F3C720382E94db6F4cF63E7F376123B5ED5#code)
+
+## Contract Features
+
+- ERC20 standard compliance
+- ERC165 interface detection
+- IERC7802 implementation for cross-chain fungibility
+- Owner-controlled minting
+- Semantic versioning
+- Optimized for OP Sepolia network
 
 ## Development Setup
 

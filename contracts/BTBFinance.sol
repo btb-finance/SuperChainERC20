@@ -5,8 +5,8 @@ import {Predeploys} from "../src/libraries/Predeploys.sol";
 import {SuperchainERC20} from "./interfaces/L2/SuperchainERC20.sol";
 import {IERC20} from "./interfaces/L2/IERC20.sol";
 import {IERC7802} from "./interfaces/L2/IERC7802.sol";
-import {ERC165} from "../src/utils/introspection/ERC165.sol";
-import {Unauthorized} from "../src/libraries/errors/Unauthorized.sol";
+import {IERC165} from "../src/utils/introspection/IERC165.sol";
+import {Unauthorized} from "../src/libraries/errors/CommonErrors.sol";
 import {Ownable} from "../src/auth/Ownable.sol";
 
 contract BTBFinanceERC20 is SuperchainERC20, Ownable {

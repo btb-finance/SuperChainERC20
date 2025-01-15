@@ -9,7 +9,7 @@ import { Predeploys } from "../../../src/libraries/Predeploys.sol";
 import { Unauthorized } from "../../../src/libraries/errors/CommonErrors.sol";
 
 // Interfaces
-import { IERC20 } from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import { IERC20 } from "./IERC20.sol";
 import { ISemver } from "../universal/ISemver.sol";
 import { IERC7802, IERC165 } from "./IERC7802.sol";
 
